@@ -1,13 +1,88 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Toko Skincare Online</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Kia Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ffb6c1;
+      color: white;
+    }
+
+    h1, h2 {
+      margin: 10px 0;
+    }
+
+    #produk-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .produk {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .produk img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff1493;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #pesanan-section {
+      padding: 20px;
+      background: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Toko Skincare Online</h1>
+    <h1>Kia Store</h1>
     <p>Kulit sehat, cantik, dan terawat ✨</p>
   </header>
 
@@ -35,6 +110,115 @@
     <ul id="pesanan-list"></ul>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    // Data produk awal (8 produk)
+    let produk = [
+      {
+        nama: "Moisturizer Glow",
+        harga: 45000,
+        deskripsi: "Melembapkan kulit dan membuat wajah tampak glowing.",
+        gambar: "mois.jpg"
+      },
+      {
+        nama: "Serum Brightening",
+        harga: 50000,
+        deskripsi: "Mencerahkan kulit kusam dengan vitamin C.",
+        gambar: "serum brightening.jpg"
+      },
+      {
+        nama: "Sunscreen SPF 50",
+        harga: 35000,
+        deskripsi: "Melindungi kulit dari sinar UVA & UVB, cocok untuk sehari-hari.",
+        gambar: "ss.jpg"
+      },
+      {
+        nama: "Toner Hydrating",
+        harga: 75000,
+        deskripsi: "Menghidrasi kulit kering dan menyeimbangkan pH wajah.",
+        gambar: "toner.jpg"
+      },
+      {
+        nama: "Facial Wash",
+        harga: 80000,
+        deskripsi: "Membersihkan wajah tanpa membuat kulit terasa kering.",
+        gambar: "facial wash.webp"
+      },
+      {
+        nama: "Retinol g2g",
+        harga: 45000,
+        deskripsi: "Meratakan dan menghaluskan tekstur kulit.",
+        gambar: "retinol.jpg"
+      },
+      {
+        nama: "Lip Balm g2g",
+        harga: 45000,
+        deskripsi: "Melembapkan bibir dengan bahan alami, aman digunakan setiap hari.",
+        gambar: "lip balm.jpg"
+      },
+      {
+        nama: "Peeling serum g2g",
+        harga: 75000,
+        deskripsi: "Menghaluskan dan mencerahkan kulit.",
+        gambar: "peeling.jpg"
+      }
+    ];
+
+    let pesanan = [];
+
+    // Render produk ke halaman
+    function tampilkanProduk() {
+      const produkList = document.getElementById("produk-list");
+      produkList.innerHTML = "";
+
+      produk.forEach((p, index) => {
+        const card = document.createElement("div");
+        card.className = "produk";
+        card.innerHTML = `
+          <img src="${p.gambar}" alt="${p.nama}">
+          <h3>${p.nama}</h3>
+          <p>${p.deskripsi}</p>
+          <strong>Rp ${p.harga.toLocaleString()}</strong><br>
+          <button onclick="pesanProduk(${index})">Pesan</button>
+        `;
+        produkList.appendChild(card);
+      });
+    }
+
+    // Tambah produk baru
+    document.getElementById("produk-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById("nama").value;
+      const harga = parseInt(document.getElementById("harga").value);
+      const deskripsi = document.getElementById("deskripsi").value;
+      const gambar = document.getElementById("gambar").value;
+
+      produk.push({ nama, harga, deskripsi, gambar });
+      tampilkanProduk();
+
+      // reset form
+      this.reset();
+    });
+
+    // Pesan produk
+    function pesanProduk(index) {
+      pesanan.push(produk[index].nama);
+      updatePesanan();
+    }
+
+    // Update daftar pesanan
+    function updatePesanan() {
+      const pesananList = document.getElementById("pesanan-list");
+      pesananList.innerHTML = "";
+      pesanan.forEach((p) => {
+        const li = document.createElement("li");
+        li.textContent = p;
+        pesananList.appendChild(li);
+      });
+    }
+
+    // Tampilkan pertama kali
+    tampilkanProduk();
+  </script>
 </body>
 </html>
