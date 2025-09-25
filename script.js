@@ -10,7 +10,7 @@ let produk = [
     nama: "Serum Brightening",
     harga: 150000,
     deskripsi: "Mencerahkan kulit kusam dengan vitamin C.",
-    gambar: "serum brightening.jpg"
+    gambar: "serum.brightening.jpg"
   }
 {  nama: "cushion",
     harga: 150000,
@@ -76,3 +76,4 @@ function updatePesanan() {
 
 // Tampilkan pertama kali
 tampilkanProduk();
+
