@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Toko Skincare Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Toko Skincare Online</h1>
+    <p>Kulit sehat, cantik, dan terawat ✨</p>
+  </header>
+
+  <!-- Daftar Produk -->
+  <section id="produk-section">
+    <h2>Daftar Produk</h2>
+    <div id="produk-list"></div>
+  </section>
+
+  <!-- Form Tambah Produk -->
+  <section id="form-section">
+    <h2>Tambah Produk Baru</h2>
+    <form id="produk-form">
+      <input type="text" id="nama" placeholder="Nama Produk" required>
+      <input type="number" id="harga" placeholder="Harga (Rp)" required>
+      <textarea id="deskripsi" placeholder="Deskripsi Produk" required></textarea>
+      <input type="text" id="gambar" placeholder="URL Gambar Produk" required>
+      <button type="submit">Tambah Produk</button>
+    </form>
+  </section>
+
+  <!-- Pesanan -->
+  <section id="pesanan-section">
+    <h2>Pesanan Saya</h2>
+    <ul id="pesanan-list"></ul>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
